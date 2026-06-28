@@ -179,6 +179,10 @@ export default function UsersPage() {
               const roleBadge = ROLE_BADGE[u.role] ?? 'badge-neutral'
               const statusBadge = STATUS_BADGE[u.status] ?? 'badge-neutral'
 
+              const avatarInitials = isAr
+                ? u.initials
+                : u.nameEn.split(' ').slice(0, 2).map((w: string) => w[0]).join('')
+
               return (
                 <tr
                   key={u.id}
@@ -198,7 +202,7 @@ export default function UsersPage() {
                           flex: '0 0 auto',
                         }}
                       >
-                        {u.initials}
+                        {avatarInitials}
                       </div>
                       <div>
                         <div style={{ fontWeight: 600, fontSize: 14 }}>{displayName}</div>

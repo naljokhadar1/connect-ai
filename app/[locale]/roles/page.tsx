@@ -20,6 +20,52 @@ const CATEGORIES = [
   { id: 'offers', perms: ['View offers', 'Create offers', 'Approve offers', 'Send offers'] },
 ]
 
+/* Default permissions per role: true = on */
+const ROLE_PERMS: Record<string, Record<string, boolean>> = {
+  admin: {
+    'View jobs': true, 'Create jobs': true, 'Edit jobs': true, 'Delete jobs': true, 'Publish jobs': true,
+    'View candidates': true, 'Add candidates': true, 'Edit candidates': true, 'Move pipeline stages': true, 'Export candidates': true,
+    'Conduct interviews': true, 'Schedule interviews': true, 'Submit scorecard': true, 'View recordings': true,
+    'View offers': true, 'Create offers': true, 'Approve offers': true, 'Send offers': true,
+  },
+  recruiter: {
+    'View jobs': true, 'Create jobs': true, 'Edit jobs': true, 'Delete jobs': false, 'Publish jobs': true,
+    'View candidates': true, 'Add candidates': true, 'Edit candidates': true, 'Move pipeline stages': true, 'Export candidates': true,
+    'Conduct interviews': false, 'Schedule interviews': true, 'Submit scorecard': false, 'View recordings': true,
+    'View offers': true, 'Create offers': true, 'Approve offers': false, 'Send offers': true,
+  },
+  hm: {
+    'View jobs': true, 'Create jobs': false, 'Edit jobs': false, 'Delete jobs': false, 'Publish jobs': false,
+    'View candidates': true, 'Add candidates': false, 'Edit candidates': false, 'Move pipeline stages': false, 'Export candidates': false,
+    'Conduct interviews': false, 'Schedule interviews': false, 'Submit scorecard': true, 'View recordings': true,
+    'View offers': true, 'Create offers': false, 'Approve offers': true, 'Send offers': false,
+  },
+  interviewer: {
+    'View jobs': true, 'Create jobs': false, 'Edit jobs': false, 'Delete jobs': false, 'Publish jobs': false,
+    'View candidates': true, 'Add candidates': false, 'Edit candidates': false, 'Move pipeline stages': false, 'Export candidates': false,
+    'Conduct interviews': true, 'Schedule interviews': false, 'Submit scorecard': true, 'View recordings': true,
+    'View offers': false, 'Create offers': false, 'Approve offers': false, 'Send offers': false,
+  },
+  external: {
+    'View jobs': false, 'Create jobs': false, 'Edit jobs': false, 'Delete jobs': false, 'Publish jobs': false,
+    'View candidates': true, 'Add candidates': false, 'Edit candidates': false, 'Move pipeline stages': false, 'Export candidates': false,
+    'Conduct interviews': true, 'Schedule interviews': false, 'Submit scorecard': true, 'View recordings': false,
+    'View offers': false, 'Create offers': false, 'Approve offers': false, 'Send offers': false,
+  },
+}
+
+function PermSwitch({ perm, roleId }: { perm: string; roleId: string }) {
+  const [on, setOn] = useState(ROLE_PERMS[roleId]?.[perm] ?? false)
+  return (
+    <div
+      className={`switch${on ? ' on' : ''}`}
+      role="switch"
+      aria-checked={on}
+      onClick={() => setOn(v => !v)}
+    />
+  )
+}
+
 export default function RolesPage() {
   const t = useTranslations()
   const { locale } = useParams<{ locale: string }>()
@@ -95,10 +141,7 @@ export default function RolesPage() {
                   {cat.perms.map((perm, i) => (
                     <div key={i} className="perm-row flex" style={{ alignItems: 'center', gap: 12, padding: '8px 12px', borderRadius: 'var(--r-sm)', background: 'var(--surface-2)' }}>
                       <span style={{ flex: 1, fontSize: 13 }}>{perm}</span>
-                      <div className="switch">
-                        <input type="checkbox" defaultChecked={selected.id === 'admin' || (selected.id === 'recruiter' && i < 3)} id={`${cat.id}-${i}`} />
-                        <label htmlFor={`${cat.id}-${i}`} />
-                      </div>
+                      <PermSwitch key={`${selected.id}-${cat.id}-${i}`} perm={perm} roleId={selected.id} />
                     </div>
                   ))}
                 </div>

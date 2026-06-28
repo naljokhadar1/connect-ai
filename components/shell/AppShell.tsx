@@ -56,6 +56,12 @@ export default function AppShell({ children, locale }: Props) {
     setTheme(t => t === 'light' ? 'dark' : 'light')
   }
 
+  const isAuthPage = pathname.endsWith('/login') || pathname.endsWith('/register')
+
+  if (isAuthPage) {
+    return <>{children}</>
+  }
+
   return (
     <div className="app">
       <Sidebar
@@ -64,7 +70,7 @@ export default function AppShell({ children, locale }: Props) {
         setCollapsed={setCollapsed}
         pathname={pathname}
       />
-      <div className="main-col">
+      <div className="main">
         <Topbar
           locale={locale}
           theme={theme}

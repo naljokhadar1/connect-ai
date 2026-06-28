@@ -28,6 +28,7 @@
   --fs-base: 14px;
   --fs-sm: 12.5px;
   --fs-lg: 16px;
+  --fs-xl: 18px;
   --fs-display: 30px;
   --fs-stat: 30px;
 
@@ -229,7 +230,7 @@
   .seg button { padding: 5px 11px; border-radius: 6px; font-size: 12.5px; font-weight: 600; color: var(--text-2); transition: var(--t-fast); white-space: nowrap; }
   .seg button.on { background: var(--surface); color: var(--text); box-shadow: var(--shadow-xs); }
 
-  .content { flex: 1 1 auto; overflow-y: auto; overflow-x: hidden; scroll-behavior: smooth; }
+  .content { flex: 1 1 auto; overflow-y: auto; overflow-x: auto; scroll-behavior: smooth; }
   .page { padding: 26px 30px 60px; max-width: 1480px; margin: 0 auto; }
   @media (prefers-reduced-motion: no-preference) { .page { animation: pageIn .34s cubic-bezier(.2,.8,.2,1); } }
 

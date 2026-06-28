@@ -193,11 +193,11 @@ export default function CandidateProfilePage() {
       </div>
 
       {/* ── Tab bar ── */}
-      <div className="profile-tabs" style={{ borderBottom: '1px solid var(--border)', paddingInline: 20 }}>
+      <div className="ptabs">
         {TABS.map(tab => (
           <button
             key={tab}
-            className={`profile-tab${activeTab === tab ? ' on' : ''}`}
+            className={activeTab === tab ? 'on' : ''}
             onClick={() => setActiveTab(tab)}
           >
             {t(`c360.${tab}`)}
