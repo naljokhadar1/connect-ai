@@ -472,6 +472,32 @@
     margin-inline-start: 2px; vertical-align: text-bottom; animation: blink 1s steps(2) infinite; border-radius: 1px;
   }
 
+  /* Workflow / role cards */
+  .role-card { display: flex; flex-direction: column; gap: 12px; }
+  .role-card .divider { margin: 0; }
+
+  .role-card-new {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; min-height: 148px;
+    border: 1.5px dashed var(--border-strong); border-radius: var(--r-lg);
+    background: var(--surface); color: var(--text-2); cursor: pointer;
+    transition: var(--t-fast);
+  }
+  .role-card-new:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+  /* Dropdown menu */
+  .dropdown {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+    box-shadow: var(--shadow-pop); padding: 6px; animation: modalIn .15s ease;
+  }
+  .dropdown-item {
+    display: flex; align-items: center; gap: 10px; width: 100%; padding: 8px 10px;
+    border-radius: var(--r-sm); font-size: 13px; font-weight: 500; color: var(--text);
+    text-align: start; transition: background var(--t-fast); background: none; border: none; cursor: pointer;
+  }
+  .dropdown-item:hover { background: var(--surface-3); }
+  .dropdown-item.danger { color: var(--danger); }
+
   /* Warn bar */
   .warn-bar {
     display: flex; align-items: flex-start; gap: 11px; padding: 13px 15px; border-radius: var(--r-md);
