@@ -60,7 +60,7 @@ function PresetCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<
   const desc = isAr ? w.descAr : w.descEn
 
   return (
-    <div className="card card-pad role-card" style={{ position: 'relative', cursor: 'default' }}>
+    <div className="card card-pad role-card" style={{ position: 'relative', cursor: 'default', display: 'flex', flexDirection: 'column' }}>
       <span
         className="badge badge-neutral"
         style={{ position: 'absolute', top: 14, insetInlineEnd: 14, height: 19, fontSize: 10.5 }}
@@ -93,13 +93,11 @@ function PresetCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<
         )}
       </div>
 
-      <hr className="divider" />
-
-      <div className="flex" style={{ gap: 8 }}>
-        <button className="btn btn-subtle btn-sm">
+      <div className="flex" style={{ gap: 8, marginTop: 'auto', paddingTop: 12, borderTop: '1px solid var(--border)' }}>
+        <button className="btn btn-subtle btn-sm" style={{ flex: 1, justifyContent: 'center' }}>
           <Plus size={14} />{t('wf.useTemplate')}
         </button>
-        <button className="btn btn-ghost btn-sm">
+        <button className="btn btn-ghost btn-sm" style={{ flex: 1, justifyContent: 'center' }}>
           <Eye size={14} />{t('wf.preview')}
         </button>
       </div>
