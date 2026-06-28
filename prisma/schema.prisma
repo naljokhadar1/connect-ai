@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  nameAr        String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  initials      String?
+  role          String    @default("recruiter")
+  status        String    @default("active")
+  jobCount      Int       @default(0)
+  lastActive    DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Department {
+  id   String @id
+  nameEn String
+  nameAr String
+  jobs   Job[]
+}
+
+model Job {
+  id           String       @id
+  titleEn      String
+  titleAr      String
+  deptId       String
+  dept         Department   @relation(fields: [deptId], references: [id])
+  locEn        String
+  locAr        String
+  typeEn       String
+  typeAr       String
+  grade        String
+  openings     Int
+  status       String       @default("open")
+  posted       Int          @default(0)
+  applicants   Int          @default(0)
+  mgrEn        String
+  mgrAr        String
+  salary       String
+  topStage     String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  candidates   Candidate[]
+}
+
+model Candidate {
+  id          String   @id
+  nameEn      String
+  nameAr      String
+  initials    String
+  avatarColor String?
+  titleEn     String
+  titleAr     String
+  jobId       String
+  job         Job      @relation(fields: [jobId], references: [id])
+  stage       String
+  match       Int
+  exp         Int
+  applied     Int
+  locEn       String
+  locAr       String
+  email       String
+  phone       String
+  eduEn       String
+  eduAr       String
+  skills      String[]
+  missingSkills String[]
+  certs       String[]
+  factors     Json
+  assess      Int      @default(0)
+  video       Int      @default(0)
+  percentile  Int
+  sourceEn    String
+  sourceAr    String
+  summaryEn   String   @db.Text
+  summaryAr   String   @db.Text
+  languages   Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Workflow {
+  id       String  @id
+  preset   Boolean @default(false)
+  isDefault Boolean @default(false)
+  jobs     Int     @default(0)
+  nameEn   String
+  nameAr   String
+  descEn   String
+  descAr   String
+  modifiedEn String @default("—")
+  modifiedAr String @default("—")
+  stages   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model EmailTemplate {
+  id         String   @id
+  starter    Boolean  @default(false)
+  cat        String
+  lang       String   @default("EN")
+  status     String   @default("active")
+  nameEn     String
+  nameAr     String
+  subject    String
+  subjectSegs Json
+  body       Json
+  wfCount    Int      @default(0)
+  wfList     String[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
