@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { useState } from 'react'
 import { List, LayoutGrid, BarChart2, Plus, Search, Filter, Users } from 'lucide-react'
@@ -33,6 +33,7 @@ export default function JobsPage() {
   const { locale } = useParams<{ locale: string }>()
   const isAr = locale === 'ar'
 
+  const router = useRouter()
   const [view, setView] = useState<View>('list')
   const [query, setQuery] = useState('')
 
@@ -156,7 +157,7 @@ export default function JobsPage() {
               {filtered.map(job => {
                 const dept = getDept(job.deptId)
                 return (
-                  <tr key={job.id} style={{ cursor: 'pointer' }}>
+                  <tr key={job.id} style={{ cursor: 'pointer' }} onClick={() => router.push(`/${locale}/jobs/${job.id}`)}>
                     <td>
                       <div style={{ fontWeight: 600 }}>
                         {isAr ? job.titleAr : job.titleEn}
@@ -223,7 +224,7 @@ export default function JobsPage() {
                   {col.map(job => {
                     const dept = getDept(job.deptId)
                     return (
-                      <div key={job.id} className="card card-pad" style={{ cursor: 'pointer' }}>
+                      <div key={job.id} className="card card-pad" style={{ cursor: 'pointer' }} onClick={() => router.push(`/${locale}/jobs/${job.id}`)}>
                         <div style={{ fontWeight: 600, marginBottom: 4 }}>
                           {isAr ? job.titleAr : job.titleEn}
                         </div>

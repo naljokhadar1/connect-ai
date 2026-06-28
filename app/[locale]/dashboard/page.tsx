@@ -41,7 +41,7 @@ export default function DashboardPage() {
 
   const recs = [
     { icon: Target, color: 'var(--accent)', titleEn: '3 strong matches idle in screening', titleAr: '3 مرشحين أقوياء متوقفون في الفرز', descEn: 'Senior Frontend Engineer candidates scoring 86%+ haven\'t advanced in 4 days.', descAr: 'مرشحو مهندس واجهات أول بنسبة 86%+ لم يتقدموا منذ 4 أيام.', ctaEn: 'Review now', ctaAr: 'مراجعة الآن', href: `/${locale}/pipeline` },
-    { icon: Zap, color: 'var(--ai)', titleEn: 'Re-engage 12 silver-medalists', titleAr: 'إعادة التواصل مع 12 مرشحاً بديلاً', descEn: 'Past finalists match 2 new open roles in Data & AI.', descAr: 'مرشحون نهائيون سابقون يطابقون وظيفتين جديدتين في البيانات والذكاء.', ctaEn: 'View talent pool', ctaAr: 'عرض المواهب', href: null },
+    { icon: Zap, color: 'var(--ai)', titleEn: 'Re-engage 12 silver-medalists', titleAr: 'إعادة التواصل مع 12 مرشحاً بديلاً', descEn: 'Past finalists match 2 new open roles in Data & AI.', descAr: 'مرشحون نهائيون سابقون يطابقون وظيفتين جديدتين في البيانات والذكاء.', ctaEn: 'View talent pool', ctaAr: 'عرض المواهب', href: `/${locale}/pipeline` },
     { icon: Clock, color: 'var(--warning)', titleEn: 'Financial Analyst offer expiring', titleAr: 'عرض المحلل المالي ينتهي قريباً', descEn: 'Fatima Al-Shamsi\'s offer needs approval within 2 days.', descAr: 'عرض فاطمة الشامسي يحتاج اعتماداً خلال يومين.', ctaEn: 'Open offers', ctaAr: 'فتح العروض', href: `/${locale}/offers` },
   ]
 

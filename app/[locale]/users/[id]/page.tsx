@@ -2,8 +2,22 @@
 
 import { useTranslations } from 'next-intl'
 import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { ChevronLeft, ChevronRight, AlertTriangle } from 'lucide-react'
 import { users } from '@/lib/mock-data'
+
+function PermSwitch({ defaultOn }: { defaultOn: boolean }) {
+  const [on, setOn] = useState(defaultOn)
+  return (
+    <div
+      className={`switch${on ? ' on' : ''}`}
+      role="switch"
+      aria-checked={on}
+      onClick={() => setOn(v => !v)}
+      style={{ cursor: 'pointer' }}
+    />
+  )
+}
 
 const PERMISSION_CATEGORIES = [
   { id: 'jobs', perms: ['View jobs', 'Create jobs', 'Edit jobs', 'Publish jobs'] },
@@ -33,7 +47,7 @@ export default function UserDetailPage() {
         {/* Left: user card */}
         <div className="card card-pad" style={{ textAlign: 'center' }}>
           <div className="avatar" style={{ width: 72, height: 72, background: user.avatarColor, fontSize: 28, margin: '0 auto 16px' }}>
-            {user.initials}
+            {isAr ? user.initials : user.nameEn.split(' ').slice(0, 2).map((w: string) => w[0]).join('')}
           </div>
           <div style={{ fontWeight: 700, fontSize: 17 }}>{isAr ? user.nameAr : user.nameEn}</div>
           <div style={{ fontSize: 13, color: 'var(--text-2)', marginBottom: 4 }}>{user.email}</div>
@@ -77,10 +91,7 @@ export default function UserDetailPage() {
                     {cat.perms.map((perm, i) => (
                       <div key={i} className="flex" style={{ alignItems: 'center', gap: 10, padding: '6px 10px', borderRadius: 'var(--r-sm)', background: 'var(--surface-2)', fontSize: 13 }}>
                         <span style={{ flex: 1 }}>{perm}</span>
-                        <div className="switch">
-                          <input type="checkbox" defaultChecked={i < 2} id={`perm-${cat.id}-${i}`} />
-                          <label htmlFor={`perm-${cat.id}-${i}`} />
-                        </div>
+                        <PermSwitch defaultOn={i < 2} />
                       </div>
                     ))}
                   </div>

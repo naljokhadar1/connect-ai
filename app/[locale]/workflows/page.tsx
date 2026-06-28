@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import {
   Plus, Workflow, Briefcase, CheckCircle2, Eye,
@@ -55,9 +55,10 @@ function KebabMenu({ items }: { items: KebabItem[] }) {
   )
 }
 
-function PresetCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<typeof useTranslations> }) {
+function PresetCard({ w, isAr, t, locale }: { w: Workflow; isAr: boolean; t: ReturnType<typeof useTranslations>; locale: string }) {
   const name = isAr ? w.nameAr : w.nameEn
   const desc = isAr ? w.descAr : w.descEn
+  const router = useRouter()
 
   return (
     <div className="card card-pad role-card" style={{ position: 'relative', cursor: 'default', display: 'flex', flexDirection: 'column' }}>
@@ -94,10 +95,10 @@ function PresetCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<
       </div>
 
       <div className="flex" style={{ gap: 8, marginTop: 'auto', paddingTop: 12, borderTop: '1px solid var(--border)' }}>
-        <button className="btn btn-subtle btn-sm" style={{ flex: 1, justifyContent: 'center' }}>
+        <button className="btn btn-subtle btn-sm" style={{ flex: 1, justifyContent: 'center' }} onClick={() => router.push(`/${locale}/workflows/${w.id}`)}>
           <Plus size={14} />{t('wf.useTemplate')}
         </button>
-        <button className="btn btn-ghost btn-sm" style={{ flex: 1, justifyContent: 'center' }}>
+        <button className="btn btn-ghost btn-sm" style={{ flex: 1, justifyContent: 'center' }} onClick={() => router.push(`/${locale}/workflows/${w.id}`)}>
           <Eye size={14} />{t('wf.preview')}
         </button>
       </div>
@@ -105,20 +106,22 @@ function PresetCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<
   )
 }
 
-function CustomCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<typeof useTranslations> }) {
+function CustomCard({ w, isAr, t, locale }: { w: Workflow; isAr: boolean; t: ReturnType<typeof useTranslations>; locale: string }) {
   const name = isAr ? w.nameAr : w.nameEn
   const desc = isAr ? w.descAr : w.descEn
   const modified = isAr ? w.modifiedAr : w.modifiedEn
+  const router = useRouter()
 
   const menuItems: KebabItem[] = [
-    { icon: <Pencil size={14} />,  label: t('wf.edit') },
+    { icon: <Pencil size={14} />,  label: t('wf.edit'), onClick: () => router.push(`/${locale}/workflows/${w.id}`) },
     { icon: <Copy size={14} />,    label: t('wf.duplicate') },
     { icon: <Star size={14} />,    label: t('wf.setDefault') },
     { icon: <Archive size={14} />, label: t('wf.archive'), danger: true },
   ]
 
   return (
-    <div className="card card-pad role-card" style={{ cursor: 'default' }}>
+    <div className="card card-pad role-card" style={{ cursor: 'pointer' }} onClick={() => router.push(`/${locale}/workflows/${w.id}`)}>
+
       <div className="flex" style={{ alignItems: 'flex-start', gap: 9 }}>
         <span style={{
           width: 34, height: 34, borderRadius: 9, flex: '0 0 auto',
@@ -161,6 +164,7 @@ function CustomCard({ w, isAr, t }: { w: Workflow; isAr: boolean; t: ReturnType<
 export default function WorkflowsPage() {
   const t = useTranslations()
   const { locale } = useParams<{ locale: string }>()
+  const router = useRouter()
   const isAr = locale === 'ar'
 
   const presets = WORKFLOWS.filter(w => w.preset)
@@ -207,7 +211,7 @@ export default function WorkflowsPage() {
           <div className="page-sub">{t('wf.sub')}</div>
         </div>
         <div style={{ flex: 1 }} />
-        <button className="btn btn-primary">
+        <button className="btn btn-primary" onClick={() => router.push(`/${locale}/workflows/new`)}>
           <Plus size={17} />{t('wf.new')}
         </button>
       </div>
@@ -245,7 +249,7 @@ export default function WorkflowsPage() {
       </div>
       <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: 34 }}>
         {presets.map(w => (
-          <PresetCard key={w.id} w={w} isAr={isAr} t={t} />
+          <PresetCard key={w.id} w={w} isAr={isAr} t={t} locale={locale} />
         ))}
       </div>
 
@@ -255,9 +259,9 @@ export default function WorkflowsPage() {
       </div>
       <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {custom.map(w => (
-          <CustomCard key={w.id} w={w} isAr={isAr} t={t} />
+          <CustomCard key={w.id} w={w} isAr={isAr} t={t} locale={locale} />
         ))}
-        <button className="role-card-new">
+        <button className="role-card-new" onClick={() => router.push(`/${locale}/workflows/new`)}>
           <span style={{
             width: 42, height: 42, borderRadius: 11,
             background: 'var(--surface-3)', display: 'grid', placeItems: 'center',

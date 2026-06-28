@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import {
   Plus, Mail, CheckCircle2, Workflow, Globe, SlidersHorizontal,
@@ -68,19 +68,20 @@ function KebabMenu({ items }: { items: KebabItem[] }) {
   )
 }
 
-function TemplateCard({ tpl, isAr, t }: { tpl: Template; isAr: boolean; t: ReturnType<typeof useTranslations> }) {
+function TemplateCard({ tpl, isAr, t, locale }: { tpl: Template; isAr: boolean; t: ReturnType<typeof useTranslations>; locale: string }) {
   const cat = CAT_CONFIG[tpl.cat]
   const name = isAr ? tpl.nameAr : tpl.nameEn
+  const router = useRouter()
 
   const menuItems: KebabItem[] = [
-    { icon: <Pencil size={14} />,  label: isAr ? 'تعديل' : 'Edit' },
+    { icon: <Pencil size={14} />,  label: isAr ? 'تعديل' : 'Edit', onClick: () => router.push(`/${locale}/templates/${tpl.id}`) },
     { icon: <Copy size={14} />,    label: isAr ? 'تكرار' : 'Duplicate' },
     { icon: <Send size={14} />,    label: isAr ? 'إرسال تجريبي' : 'Send test' },
     { icon: <Archive size={14} />, label: isAr ? 'أرشفة' : 'Archive', danger: true },
   ]
 
   return (
-    <div className="card tpl-card" style={{ cursor: 'pointer' }}>
+    <div className="card tpl-card" style={{ cursor: 'pointer' }} onClick={() => router.push(`/${locale}/templates/${tpl.id}`)}>
       {/* Card top row */}
       <div className="flex" style={{ alignItems: 'center', gap: 8, padding: '13px 14px 0' }}>
         {cat && (
@@ -117,7 +118,7 @@ function TemplateCard({ tpl, isAr, t }: { tpl: Template; isAr: boolean; t: Retur
           <button
             className="btn btn-subtle btn-sm"
             style={{ marginInlineStart: 'auto', fontSize: 11.5, height: 26, padding: '0 9px' }}
-            onClick={e => e.stopPropagation()}
+            onClick={e => { e.stopPropagation(); router.push(`/${locale}/templates/${tpl.id}`) }}
           >
             <Plus size={12} />{t('wf.useTemplate')}
           </button>
@@ -130,6 +131,7 @@ function TemplateCard({ tpl, isAr, t }: { tpl: Template; isAr: boolean; t: Retur
 export default function TemplatesPage() {
   const t = useTranslations()
   const { locale } = useParams<{ locale: string }>()
+  const router = useRouter()
   const isAr = locale === 'ar'
 
   const [query, setQuery]   = useState('')
@@ -172,7 +174,7 @@ export default function TemplatesPage() {
         <button className="btn btn-ghost">
           <SlidersHorizontal size={16} />{t('et.manageVars')}
         </button>
-        <button className="btn btn-primary">
+        <button className="btn btn-primary" onClick={() => router.push(`/${locale}/templates/new`)}>
           <Plus size={17} />{t('et.new')}
         </button>
       </div>
@@ -246,7 +248,7 @@ export default function TemplatesPage() {
       </div>
       <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: 34 }}>
         {starters.map(tpl => (
-          <TemplateCard key={tpl.id} tpl={tpl} isAr={isAr} t={t} />
+          <TemplateCard key={tpl.id} tpl={tpl} isAr={isAr} t={t} locale={locale} />
         ))}
         {starters.length === 0 && (
           <div className="faint" style={{ fontSize: 13, gridColumn: '1/-1', padding: '20px 0' }}>
@@ -261,9 +263,9 @@ export default function TemplatesPage() {
       </div>
       <div className="grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
         {customs.map(tpl => (
-          <TemplateCard key={tpl.id} tpl={tpl} isAr={isAr} t={t} />
+          <TemplateCard key={tpl.id} tpl={tpl} isAr={isAr} t={t} locale={locale} />
         ))}
-        <button className="role-card-new">
+        <button className="role-card-new" onClick={() => router.push(`/${locale}/templates/new`)}>
           <span style={{
             width: 40, height: 40, borderRadius: 10,
             background: 'var(--surface-3)', display: 'grid', placeItems: 'center',
