@@ -1,0 +1,177 @@
+/* ============================================================
+   Connect AI — Job Creation Wizard CSS
+   ============================================================ */
+
+/* ── Wizard step indicator ── */
+.wiz-steps { display: flex; align-items: center; gap: 0; padding: 0 28px 20px; }
+.wiz-step { display: flex; align-items: center; gap: 0; flex: 1; min-width: 0; }
+.wiz-step:last-child { flex: 0 0 auto; }
+.wiz-pill { display: flex; align-items: center; gap: 8px; padding: 6px 10px 6px 6px; border-radius: 24px; cursor: default; border: 1.5px solid transparent; transition: all var(--t); white-space: nowrap; flex: 0 0 auto; }
+.wiz-pill.done { background: var(--accent-soft); border-color: color-mix(in oklch, var(--accent) 25%, transparent); cursor: pointer; }
+.wiz-pill.done:hover { background: var(--accent-soft-2); }
+.wiz-pill.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklch, var(--accent) 18%, transparent); }
+.wiz-pill.pending { background: var(--surface-3); border-color: var(--border); }
+.wiz-num { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; flex: 0 0 auto; }
+.wiz-pill.done .wiz-num { background: var(--accent); color: #fff; }
+.wiz-pill.active .wiz-num { background: #fff; color: var(--accent); }
+.wiz-pill.pending .wiz-num { background: var(--surface-2); color: var(--text-3); }
+.wiz-label { font-size: 13px; font-weight: 600; color: var(--text-2); }
+.wiz-pill.active .wiz-label { color: #fff; }
+.wiz-pill.done .wiz-label { color: var(--accent-strong); }
+.wiz-pill.pending .wiz-label { color: var(--text-3); }
+.wiz-connector { flex: 1; height: 2px; background: var(--border); margin: 0 4px; border-radius: 2px; min-width: 12px; transition: background var(--t); }
+.wiz-connector.done { background: var(--accent); }
+
+/* ── Content card ── */
+.wiz-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 32px 36px; max-width: 900px; margin: 0 auto; box-shadow: var(--shadow-xs); }
+.wiz-card + .wiz-card { margin-top: var(--gap); }
+.wiz-heading { font-size: 22px; font-weight: 700; letter-spacing: -.025em; margin-bottom: 4px; }
+.wiz-sub { color: var(--text-2); font-size: 15px; margin-bottom: 28px; }
+
+/* ── Group headings ── */
+.wiz-group { margin-bottom: 28px; }
+.wiz-group:last-child { margin-bottom: 0; }
+.wiz-group-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+/* ── Inputs ── */
+.input-lg { font-size: 17px; font-weight: 500; height: 50px; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+/* ── Radio cards (large) ── */
+.radio-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+.radio-card { position: relative; border: 1.5px solid var(--border-strong); border-radius: var(--r-lg); padding: 20px; cursor: pointer; transition: var(--t); }
+.radio-card:hover { border-color: var(--accent); background: var(--accent-soft); }
+.radio-card.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 3px color-mix(in oklch,var(--accent) 15%,transparent); }
+.radio-card.selected-ai { border-color: var(--ai); background: var(--ai-soft); box-shadow: 0 0 0 3px color-mix(in oklch,var(--ai) 15%,transparent); }
+.radio-card-ico { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; margin-bottom: 12px; }
+.radio-card-ico.ai { background: var(--ai); color: #fff; }
+.radio-card-ico.file { background: var(--accent-soft); color: var(--accent-strong); }
+.radio-card-check { position: absolute; top: 14px; right: 14px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border-strong); display: grid; place-items: center; transition: var(--t); }
+.radio-card.selected .radio-card-check, .radio-card.selected-ai .radio-card-check { background: var(--accent); border-color: var(--accent); }
+.radio-card.selected-ai .radio-card-check { background: var(--ai); border-color: var(--ai); }
+[dir="rtl"] .radio-card-check { right: auto; left: 14px; }
+
+/* ── Skills table ── */
+.skills-list { display: flex; flex-direction: column; gap: 0; }
+.skill-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--r-sm); border: 1px solid transparent; transition: var(--t-fast); }
+.skill-row:hover { background: var(--surface-2); border-color: var(--border); }
+.skill-name { flex: 0 0 180px; font-size: 13.5px; font-weight: 600; }
+.skill-cat { flex: 0 0 auto; }
+.skill-prof { flex: 0 0 130px; }
+.skill-class { flex: 1; min-width: 0; }
+.skill-remove { flex: 0 0 auto; opacity: 0; transition: var(--t-fast); }
+.skill-row:hover .skill-remove { opacity: 1; }
+.class-seg { display: inline-flex; background: var(--surface-3); border-radius: 8px; padding: 2px; gap: 2px; }
+.class-seg button { padding: 4px 10px; border-radius: 6px; font-size: 11.5px; font-weight: 600; color: var(--text-2); transition: var(--t-fast); white-space: nowrap; }
+.class-seg button.must { background: var(--accent); color: #fff; }
+.class-seg button.nice { background: var(--surface-2); color: var(--text-2); border: 1px solid var(--border); }
+.class-seg button.deal { background: var(--danger); color: #fff; }
+
+/* ── Weight sliders ── */
+.weight-bar { height: 12px; border-radius: 20px; background: var(--surface-3); overflow: hidden; margin-bottom: 18px; display: flex; }
+.weight-seg { height: 100%; transition: width .4s ease; }
+
+/* ── Tier bar ── */
+.tier-bar { height: 32px; border-radius: 10px; overflow: hidden; display: flex; position: relative; cursor: col-resize; }
+.tier-weak { flex: 0 0 40%; background: oklch(0.72 0.09 20); }
+.tier-possible { flex: 0 0 20%; background: oklch(0.78 0.1 75); }
+.tier-good { flex: 0 0 20%; background: oklch(0.68 0.12 255); }
+.tier-strong { flex: 1; background: oklch(0.62 0.13 152); }
+.tier-labels { display: flex; font-size: 11.5px; font-weight: 600; margin-top: 6px; }
+
+/* ── Team rows ── */
+.team-row { display: flex; align-items: center; gap: 12px; padding: 13px 14px; border-radius: var(--r-md); border: 1px solid var(--border); margin-bottom: 10px; background: var(--surface); transition: var(--t-fast); }
+.team-row:hover { border-color: var(--accent); }
+
+/* ── Distribution toggles ── */
+.dist-card { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; margin-bottom: 10px; background: var(--surface); }
+.dist-head { display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
+.dist-body { padding: 12px 16px 16px; border-top: 1px solid var(--border); background: var(--surface-2); }
+
+/* ── Upload zone ── */
+.upload-zone { border: 2px dashed var(--border-strong);
+@keyframes spin { to { transform: rotate(360deg); } } border-radius: var(--r-xl); padding: 52px 40px; text-align: center; cursor: pointer; transition: var(--t); }
+.upload-zone:hover, .upload-zone.dragover { border-color: var(--accent); background: var(--accent-soft); }
+.upload-zone svg { margin: 0 auto 16px; display: block; color: var(--text-3); }
+
+/* ── File list ── */
+.file-row { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: var(--r-sm); border: 1px solid var(--border); margin-bottom: 8px; background: var(--surface); }
+
+/* ── Review cards ── */
+.review-card { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; margin-bottom: 14px; background: var(--surface); }
+.review-head { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; transition: background var(--t-fast); }
+.review-head:hover { background: var(--surface-2); }
+.review-body { padding: 0 20px 20px; border-top: 1px solid var(--border); }
+.kv-grid { display: grid; grid-template-columns: 180px 1fr; gap: 10px 20px; padding-top: 18px; }
+.kv-label { font-size: 12.5px; color: var(--text-2); font-weight: 600; }
+.kv-val { font-size: 13.5px; font-weight: 500; }
+
+/* ── Success screen ── */
+.success-wrap { display: flex; flex-direction: column; align-items: center; padding: 40px 24px 80px; }
+.success-ico { width: 72px; height: 72px; border-radius: 50%; background: var(--success-soft); display: grid; place-items: center; margin-bottom: 24px; }
+.quick-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; margin-top: 24px; }
+.quick-btn { border: 1px solid var(--border); border-radius: var(--r-lg); padding: 18px 20px; text-align: start; transition: var(--t-fast); background: var(--surface); cursor: pointer; }
+.quick-btn:hover { border-color: var(--accent); background: var(--accent-soft); }
+.quick-btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.quick-btn-primary:hover { background: var(--accent-strong); }
+
+/* ── Wizard header strip ── */
+.wiz-topstrip { display: flex; align-items: center; gap: 16px; padding: 16px 28px 14px; border-bottom: 1px solid var(--border); }
+.wiz-jobpreview { font-size: 15px; font-weight: 600; flex: 1; text-align: center; }
+
+/* ── JD sections ── */
+.jd-section { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; margin-bottom: 10px; }
+.jd-section-head { display: flex; align-items: center; gap: 12px; padding: 13px 16px; cursor: pointer; background: var(--surface-2); transition: background var(--t-fast); }
+.jd-section-head:hover { background: var(--surface-3); }
+.jd-section-body { padding: 14px 16px; }
+.jd-section-body textarea { width: 100%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 14px; line-height: 1.75; resize: vertical; color: var(--text); min-height: 80px; }
+
+/* ── Criterion card ── */
+.crit-card { border: 1px solid var(--border); border-radius: var(--r-md); padding: 14px 16px; margin-bottom: 10px; background: var(--surface); }
+.crit-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+
+/* ── AI banner ── */
+.ai-banner { display: flex; align-items: center; gap: 11px; padding: 11px 14px; border-radius: var(--r-md); background: var(--ai-soft); border: 1px solid color-mix(in oklch, var(--ai) 30%, transparent); margin-bottom: 20px; }
+
+/* ── Radio option (for publish mode) ── */
+.rad-opt { display: flex; align-items: flex-start; gap: 11px; padding: 10px 13px; border-radius: var(--r-sm); cursor: pointer; transition: background var(--t-fast); margin-bottom: 8px; }
+.rad-opt:hover { background: var(--surface-2); }
+.rad-opt.on { background: var(--accent-soft); }
+.rad { flex: 0 0 18px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border-strong); display: grid; place-items: center; margin-top: 1px; transition: var(--t-fast); }
+.rad-opt.on .rad { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in oklch,var(--accent) 18%,transparent); }
+.rad-opt.on .rad::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #fff; }
+
+/* ── Cbx (checkbox) ── */
+.cbx { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: var(--r-sm); cursor: pointer; transition: background var(--t-fast); }
+.cbx:hover { background: var(--surface-2); }
+.cbx .box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--border-strong); display: grid; place-items: center; flex: 0 0 auto; background: var(--surface); transition: var(--t-fast); color: #fff; }
+.cbx.on .box { background: var(--accent); border-color: var(--accent); }
+
+/* ── Kebab menu ── */
+.kebab-wrap { position: relative; }
+.kebab-menu { position: absolute; inset-inline-end: 0; top: calc(100% + 4px); width: 180px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-md); z-index: 60; padding: 4px 0; }
+.kebab-item { display: flex; align-items: center; gap: 9px; padding: 8px 13px; font-size: 13.5px; cursor: pointer; transition: background var(--t-fast); color: var(--text); }
+.kebab-item:hover { background: var(--surface-2); }
+.kebab-item.danger { color: var(--danger); }
+.switch input { display: none; }
+.switch-track { position: absolute; inset: 0; background: var(--surface-3); border: 1.5px solid var(--border-strong); border-radius: 20px; transition: var(--t); cursor: pointer; }
+.switch input:checked + .switch-track { background: var(--accent); border-color: var(--accent); }
+.switch-thumb { position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: var(--shadow-sm); transition: var(--t); pointer-events: none; }
+.switch input:checked ~ .switch-thumb { left: 21px; }
+[dir="rtl"] .switch-thumb { left: auto; right: 3px; }
+[dir="rtl"] .switch input:checked ~ .switch-thumb { left: auto; right: 21px; }
+
+/* ── Wizard footer ── */
+.wiz-footer { position: sticky; bottom: 0; background: color-mix(in oklch, var(--surface) 92%, transparent); backdrop-filter: blur(10px); border-top: 1px solid var(--border); padding: 14px 28px; display: flex; align-items: center; gap: 12px; z-index: 20; }
+
+/* ── Bullet editor ── */
+.bullet-input-wrap { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+.bullet-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; margin-top: 17px; }
+
+/* ── Weight slider row ── */
+.wt-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.wt-label { flex: 0 0 220px; font-size: 13px; font-weight: 500; color: var(--text-2); }
+.wt-pct { flex: 0 0 44px; font-size: 14px; font-weight: 700; font-family: "IBM Plex Mono",monospace; text-align: end; color: var(--accent); }
+.wt-slider { flex: 1; -webkit-appearance: none; appearance: none; height: 5px; border-radius: 20px; outline: none; cursor: pointer; background: linear-gradient(to right, var(--accent) 0%, var(--accent) var(--pct, 50%), var(--surface-3) var(--pct, 50%)); }
+.wt-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); box-shadow: var(--shadow-sm); cursor: pointer; }

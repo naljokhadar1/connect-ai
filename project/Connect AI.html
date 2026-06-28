@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light" data-density="comfortable">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect AI — Recruitment & Talent Intelligence</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/job-creation.css" />
+  <link rel="stylesheet" href="css/candidate-profile.css" />
+
+  <template id="__bundler_thumbnail" data-bg-color="#f4f6f9">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <!-- App shell silhouette -->
+      <!-- Sidebar -->
+      <rect x="0" y="0" width="200" height="800" fill="#ffffff" rx="0"/>
+      <!-- Brand mark -->
+      <rect x="18" y="16" width="34" height="34" rx="9" fill="#4f46e5"/>
+      <circle cx="27" cy="26" r="3" fill="white" opacity="0.9"/>
+      <circle cx="35" cy="22" r="2" fill="white" opacity="0.7"/>
+      <circle cx="31" cy="34" r="2.5" fill="white" opacity="0.8"/>
+      <!-- Brand name -->
+      <rect x="60" y="22" width="60" height="8" rx="4" fill="#1a1a2e" opacity="0.7"/>
+      <rect x="60" y="34" width="40" height="6" rx="3" fill="#4f46e5" opacity="0.5"/>
+      <!-- Nav items -->
+      <rect x="12" y="72" width="176" height="32" rx="8" fill="#eef1f6"/>
+      <rect x="16" y="80" width="3" height="16" rx="2" fill="#4f46e5"/>
+      <rect x="28" y="82" width="16" height="12" rx="3" fill="#4f46e5" opacity="0.4"/>
+      <rect x="50" y="85" width="60" height="6" rx="3" fill="#4f46e5" opacity="0.8"/>
+      <rect x="28" y="116" width="16" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="50" y="119" width="50" height="6" rx="3" fill="#9ca3af" opacity="0.6"/>
+      <rect x="28" y="142" width="16" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="50" y="145" width="55" height="6" rx="3" fill="#9ca3af" opacity="0.6"/>
+      <rect x="28" y="168" width="16" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="50" y="171" width="44" height="6" rx="3" fill="#9ca3af" opacity="0.6"/>
+      <!-- Topbar -->
+      <rect x="200" y="0" width="1000" height="62" fill="#ffffff"/>
+      <rect x="200" y="61" width="1000" height="1" fill="#e5e8ee"/>
+      <!-- Search bar -->
+      <rect x="220" y="16" width="320" height="30" rx="8" fill="#f1f3f7"/>
+      <circle cx="238" cy="31" r="6" fill="none" stroke="#8b94a4" stroke-width="1.5"/>
+      <rect x="260" y="28" width="140" height="5" rx="2.5" fill="#c4c9d4"/>
+      <rect x="410" y="22" width="40" height="18" rx="9" fill="#ccfbf1"/>
+      <rect x="415" y="28" width="30" height="6" rx="3" fill="#0d9488"/>
+      <!-- Main content area -->
+      <rect x="200" y="62" width="1000" height="738" fill="#f4f6f9"/>
+      <!-- Page heading -->
+      <rect x="234" y="90" width="180" height="20" rx="6" fill="#1a1a2e" opacity="0.75"/>
+      <rect x="234" y="116" width="280" height="10" rx="5" fill="#8b94a4" opacity="0.6"/>
+      <!-- KPI cards row -->
+      <rect x="234" y="146" width="220" height="90" rx="12" fill="white"/>
+      <rect x="474" y="146" width="220" height="90" rx="12" fill="white"/>
+      <rect x="714" y="146" width="220" height="90" rx="12" fill="white"/>
+      <rect x="954" y="146" width="220" height="90" rx="12" fill="white"/>
+      <!-- KPI icons -->
+      <rect x="250" y="162" width="34" height="34" rx="9" fill="#eef1f6"/>
+      <rect x="258" y="170" width="18" height="18" rx="4" fill="#4f46e5" opacity="0.5"/>
+      <rect x="490" y="162" width="34" height="34" rx="9" fill="#f0fdf4"/>
+      <rect x="498" y="170" width="18" height="18" rx="4" fill="#16a34a" opacity="0.5"/>
+      <rect x="730" y="162" width="34" height="34" rx="9" fill="#faf5ff"/>
+      <rect x="738" y="170" width="18" height="18" rx="4" fill="#9333ea" opacity="0.5"/>
+      <rect x="970" y="162" width="34" height="34" rx="9" fill="#f0fdfa"/>
+      <rect x="978" y="170" width="18" height="18" rx="4" fill="#0d9488" opacity="0.5"/>
+      <!-- KPI numbers -->
+      <rect x="250" y="202" width="60" height="18" rx="5" fill="#1a1a2e" opacity="0.8"/>
+      <rect x="490" y="202" width="55" height="18" rx="5" fill="#1a1a2e" opacity="0.8"/>
+      <rect x="730" y="202" width="58" height="18" rx="5" fill="#1a1a2e" opacity="0.8"/>
+      <rect x="970" y="202" width="52" height="18" rx="5" fill="#1a1a2e" opacity="0.8"/>
+      <!-- Main cards -->
+      <rect x="234" y="256" width="470" height="300" rx="14" fill="white"/>
+      <rect x="724" y="256" width="450" height="140" rx="14" fill="white" style="filter:drop-shadow(0 1px 3px rgba(0,0,0,.06))"/>
+      <rect x="724" y="408" width="450" height="148" rx="14" fill="white"/>
+      <!-- Funnel bars in left card -->
+      <rect x="252" y="290" width="40" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="300" y="290" width="300" height="12" rx="3" fill="#4f46e5" opacity="0.7"/>
+      <rect x="252" y="314" width="40" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="300" y="314" width="240" height="12" rx="3" fill="#0ea5a4" opacity="0.6"/>
+      <rect x="252" y="338" width="40" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="300" y="338" width="180" height="12" rx="3" fill="#9333ea" opacity="0.6"/>
+      <rect x="252" y="362" width="40" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="300" y="362" width="130" height="12" rx="3" fill="#f59e0b" opacity="0.6"/>
+      <rect x="252" y="386" width="40" height="12" rx="3" fill="#9ca3af" opacity="0.5"/>
+      <rect x="300" y="386" width="80" height="12" rx="3" fill="#16a34a" opacity="0.6"/>
+      <!-- Connect AI wordmark large -->
+      <text x="600" y="740" text-anchor="middle" font-family="system-ui,sans-serif" font-size="28" font-weight="700" fill="#4f46e5" opacity="0.15">Connect AI</text>
+    </svg>
+  </template>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- data (plain JS) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/data-workflows.js"></script>
+  <script src="js/data-templates.js"></script>
+  <script src="js/job-creation-data.js"></script>
+  <script src="js/candidate-profile-data.js"></script>
+  <script src="js/assessment-preview-data.js"></script>
+  <script src="js/data-assessments.js"></script>
+
+  <!-- components + screens (JSX) -->
+  <script type="text/babel" src="js/icons.jsx"></script>
+  <script type="text/babel" src="js/ui.jsx"></script>
+  <script type="text/babel" src="js/shell.jsx"></script>
+  <script type="text/babel" src="js/screen-dashboard.jsx"></script>
+  <script type="text/babel" src="js/screen-jobs.jsx"></script>
+  <script type="text/babel" src="js/screen-pipeline.jsx"></script>
+  <script type="text/babel" src="js/screen-candidate.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment-library.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment-detail.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment-builder.jsx"></script>
+  <script type="text/babel" src="js/screen-candidate-assessment.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment-results.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment-integrations.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-agent.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-candidate.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-review.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-live.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-library.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-linkage.jsx"></script>
+  <script type="text/babel" src="js/screen-screening-wizard.jsx"></script>
+  <script type="text/babel" src="js/screen-video.jsx"></script>
+  <script type="text/babel" src="js/screen-offer.jsx"></script>
+  <script type="text/babel" src="js/admin.jsx"></script>
+  <script type="text/babel" src="js/screen-users.jsx"></script>
+  <script type="text/babel" src="js/screen-roles.jsx"></script>
+  <script type="text/babel" src="js/screen-template-picker.jsx"></script>
+  <script type="text/babel" src="js/screen-add-stage.jsx"></script>
+  <script type="text/babel" src="js/ai-assistant-panel.jsx"></script>
+  <script type="text/babel" src="js/lang-variants.jsx"></script>
+  <script type="text/babel" src="js/screen-workflow-panel.jsx"></script>
+  <script type="text/babel" src="js/screen-workflows.jsx"></script>
+  <script type="text/babel" src="js/screen-template-vars.jsx"></script>
+  <script type="text/babel" src="js/screen-template-editor.jsx"></script>
+  <script type="text/babel" src="js/screen-linked-stages.jsx"></script>
+  <script type="text/babel" src="js/screen-templates.jsx"></script>
+  <script type="text/babel" src="js/screen-candidate-profile.jsx"></script>
+  <script type="text/babel" src="js/candidate-profile-tabs.jsx"></script>
+  <script type="text/babel" src="js/screen-assessment-preview.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="js/job-creation-wizard.jsx"></script>
+  <script type="text/babel" src="js/job-creation-steps-1-2.jsx"></script>
+  <script type="text/babel" src="js/job-creation-steps-3-4.jsx"></script>
+  <script type="text/babel" src="js/job-creation-steps-5-6.jsx"></script>
+  <script type="text/babel" src="js/job-creation-app.jsx"></script>
+  <script type="text/babel" src="js/app.jsx"></script>
+</body>
+</html>
