@@ -1,0 +1,4 @@
+{
+  "buildCommand": "prisma generate && prisma db push && tsx prisma/seed.ts && npm run build",
+  "installCommand": "npm install"
+}
